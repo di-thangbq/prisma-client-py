@@ -156,6 +156,13 @@ def get_open_port() -> int:
     return int(port)
 
 
+def get_host() -> str:
+    host = "localhost"
+    if os.getenv("PRISMA_HOST"):
+        host = os.getenv("PRISMA_HOST")
+    return host
+
+
 def handle_response_errors(resp: AbstractResponse[Any], data: Any) -> NoReturn:
     for error in data:
         try:

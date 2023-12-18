@@ -114,9 +114,10 @@ class QueryEngine(HTTPEngine):
         datasources: Optional[List[DatasourceOverride]] = None,
     ) -> None:
         port = utils.get_open_port()
+        host = utils.get_host()
         log.debug('Running query engine on port %i', port)
 
-        self.url = f'http://localhost:{port}'
+        self.url = f'http://{host}:{port}'
 
         env = os.environ.copy()
         env.update(
