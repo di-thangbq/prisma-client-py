@@ -145,11 +145,12 @@ def ensure(binary_paths: dict[str, str]) -> Path:
 
 
 def get_open_port() -> int:
+    _port = 0
     if os.getenv("PRISMA_PORT"):
-        return int(os.getenv("PRISMA_PORT"))
+        _port = int(os.getenv("PRISMA_PORT"))
     
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('', 0))
+    sock.bind(('', _port))
     port = sock.getsockname()[1]
     sock.close()
     return int(port)
